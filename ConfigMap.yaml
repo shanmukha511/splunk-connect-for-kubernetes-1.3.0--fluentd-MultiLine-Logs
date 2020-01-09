@@ -236,12 +236,15 @@ data:
         separator ""
         use_first_timestamp true
       </filter>
+      
       <filter "#{ENV['MULTI_LINE_NAMESPACE']}">
         @type concat
         key log
         timeout_label @SPLUNK
         stream_identity_key stream
         multiline_start_regexp "#{ENV['REGEX']}"
+        multiline_end_regexp /\\n$/
+        separator ""
         flush_interval 5s
       </filter>
 
